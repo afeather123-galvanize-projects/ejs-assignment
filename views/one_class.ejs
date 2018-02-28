@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/">back</a>
+    <h3>Class Name : <%= oneClass.name %></h3>
+    <h4>Class inst : <%= oneClass.inst %></h4>
+    <hr>
+    <h4>Students</h4>
+    <% for(let i = 0; i<students.length; i++){ %>
+      <div class="">
+        <b> <%= students[i].first_name %> <%= students[i].last_name %></b>
+      </div>
+    <% } %>
+
+    <form action="/students/<%= oneClass.id %>" method="post">
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="email" name="email" placeholder="Email">
+      <input type="number" name="age" placeholder="Age">
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>
