@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=classData.name%></h1>
+    <ul>
+        <li>Teacher: <%=classData.teacher%></li>
+        <li>Room Number: <%=classData.room_number%></li>
+        <li>Time: <%=classData.time%></li>
+    </ul>
+    <a href="/classes/edit/<%=classData.id%>">Edit</a>
+    <h2>Students</h2>
+    <form action="/classes/student" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="age">Age</label>
+        <input type="number" name="age">
+        <input type="number" name="class_id" value="<%=classData.id%>" hidden=''>
+        <button>Submit</button>
+    </form>
+    <ul>
+        <% for(let i = 0; i < students.length; i++) { %>
+            <li>
+                <a href="/students/<%=students[i].id%>">
+                    <%=students[i].name%>
+                </a>
+                <button onclick="UnenrollStudent(<%=students[i].join_id%>)">Un-Enroll</button>
+            </li>
+        <% } %>
+    </ul>
+    
+    <script>
+        function UnenrollStudent(id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '/classes/student/' + id, true);
+            xhr.onload = function(data) {
+                window.location.reload();
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

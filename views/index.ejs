@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Classes</h1>
+    <form action="/classes" method="POST">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name">
+        <label for="teacher">Teacher</label>
+        <input id="teacher" type="text" name="teacher">
+        <label for="room_number">Room Number</label>
+        <input id="room_number" type="number" name="room_number">
+        <label for="time">Time</label>
+        <input id="time" type="time" name="time">
+        <button>Submit</button>          
+    </form>
+    <ul>
+        <% for(let i = 0; i < classes.length; i++) { %>
+            <li>
+                <h3>
+                    <a href="<%= '/classes/' + classes[i].id%>">
+                        <%=classes[i].name%>
+                    </a>
+                    <button onclick="DeleteClass(<%=classes[i].id%>)">Delete</button>
+                </h3>
+            </li>
+        <% } %>
+    </ul>
+
+    <script>
+        function DeleteClass(id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '/classes/' + id, true);
+            xhr.onload = (data) => {
+                if(typeof data.currentTarget.response === 'string') {
+                    window.location = data.currentTarget.response;
+                }
+                console.log('Woo hoo!');
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

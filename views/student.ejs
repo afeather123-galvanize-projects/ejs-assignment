@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=student.name%></h1>
+    <p><%=student.age%></p>
+    <a href="/students/edit/<%=student.id%>">Edit</a>
+    <h2>Classes</h2>
+    <form action="/students/classes" method="POST">
+        <label for="class_id">Add Class</label>
+        <select id="class_id" name="class_id" id="">
+            <%unenrolledClasses.forEach(uec => {%>
+                <option value="<%=uec.id%>"><%=uec.name%></option>
+            <%})%>
+        </select>
+        <input type="number" name="student_id" value="<%=student.id%>" hidden=''>
+        <button>Submit</button>
+    </form>
+    <ul>
+        <% classes.forEach(c => { %>
+            <li>
+                <a href="/classes/<%=c.id%>">
+                    <%=c.name%>
+                </a>
+                <button>Un-Enroll</button>
+            </li>
+        <%});%>
+    </ul>
+</body>
+</html>

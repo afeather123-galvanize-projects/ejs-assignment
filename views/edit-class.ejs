@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit <%=classData.name%></h1>
+    <form id="form" action="/classes/<%=classData.id%>?_method=PUT" method="POST">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" value="<%=classData.name%>">
+        <label for="teacher">Teacher</label>
+        <input id="teacher" type="text" name="teacher" value="<%=classData.teacher%>">
+        <label for="room_number">Room Number</label>
+        <input id="room_number" type="number" name="room_number" value="<%=classData.room_number%>">
+        <label for="time">Time</label>
+        <input id="time" type="time" name="time" value="<%=classData.time%>">
+        <button id="submit">Submit</button>
+    </form>
+</body>
+</html>
+
